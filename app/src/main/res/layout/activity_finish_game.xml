@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.mindblown.drunkbearzz.mindblown.FinishGameActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Game Finished"
+        android:id="@+id/textView"
+        android:gravity="center"
+        android:textSize="@dimen/abc_action_button_min_width_material"
+        android:textStyle="bold"
+        android:textColor="#0c3834"
+        android:layout_marginTop="78dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Correct : "
+        android:id="@+id/txt_correct"
+        android:gravity="center"
+        android:textSize="@dimen/abc_action_button_min_width_material"
+        android:textStyle="bold"
+        android:textColor="#4dff44"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Incorrect : "
+        android:id="@+id/txt_incorrect"
+        android:gravity="center"
+        android:textSize="@dimen/abc_action_button_min_width_material"
+        android:textStyle="bold"
+        android:textColor="#ff3b45"
+        android:layout_below="@+id/txt_correct"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/txt_correct"
+        android:layout_alignEnd="@+id/txt_correct" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Rank: "
+        android:id="@+id/txt_rank"
+        android:gravity="center"
+        android:textSize="@dimen/abc_action_button_min_width_material"
+        android:textStyle="bold"
+        android:textColor="#02ffe8"
+        android:layout_below="@+id/txt_incorrect"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+</RelativeLayout>

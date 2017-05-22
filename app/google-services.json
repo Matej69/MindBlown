@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "415431215800",
+    "firebase_url": "https://mindblown-cb605.firebaseio.com",
+    "project_id": "mindblown-cb605",
+    "storage_bucket": "mindblown-cb605.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:415431215800:android:2e7cf991b5b580f2",
+        "android_client_info": {
+          "package_name": "com.mindblown.drunkbearzz.mindblown"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "415431215800-9e2ei6jm9oiddfr7u39qhcuf6sp8cdlk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mindblown.drunkbearzz.mindblown",
+            "certificate_hash": "78ab25f0ca8fb526d659c06a5c75fe77bce3947b"
+          }
+        },
+        {
+          "client_id": "415431215800-4a8vap24nj1rsgkpu0colluneo12kfau.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBqeH8A-QBXl1jPBLEmhZsFR2Ng9lmfP1Y"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "415431215800-4a8vap24nj1rsgkpu0colluneo12kfau.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
