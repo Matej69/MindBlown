@@ -14,6 +14,7 @@ public class QuestionInfo {
     {
         ANIMALS,
         MEMES,
+        INTERNET,
         SPORT,
         SCIENCE,
         PHYSICS,
@@ -23,6 +24,10 @@ public class QuestionInfo {
         POKEMON,
         VIDEO_GAMES,
         MOVIES,
+        COUNTRIES,
+        FOOD,
+        DRINK,
+        ANIME,
         MAX
     }
 
@@ -41,8 +46,9 @@ public class QuestionInfo {
         answer3 = _a3;
         correctAnswer = _c;
     }
-    public boolean IsCorrect(String _answer) {
-        return (_answer == correctAnswer);
+    public boolean IsCorrect(String _answer)
+    {
+        return (_answer.equals(correctAnswer));
     }
 
 

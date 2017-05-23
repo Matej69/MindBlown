@@ -22,9 +22,6 @@ public class QuestionActivity extends AppCompatActivity {
 
     TextView txt_question;
     ProgressBar bar_progress;
-    //Button btn_answer1;
-    //Button btn_answer2;
-    //Button btn_answer3;
     ArrayList<Button> buttonList;
 
     QuestionInfo info;
@@ -36,8 +33,12 @@ public class QuestionActivity extends AppCompatActivity {
 
         InitGUIRefrences();
         InitValues();
-        info = QuestionReader.GetRandQuestionInfo(Global.category);
-        ReadInfoToGUI(info);
+
+        if(Global.IsConnectedToInternet(getApplicationContext()))
+            InitNewQuestion();
+        else
+            OnDisconect();
+
 
     }
 
@@ -47,9 +48,9 @@ public class QuestionActivity extends AppCompatActivity {
         txt_question = (TextView)findViewById(R.id.txt_question);
         bar_progress = (ProgressBar)findViewById(R.id.bar_progress);
         buttonList = new ArrayList();
-        buttonList.add((Button)findViewById(R.id.btn_answer1));
-        buttonList.add((Button)findViewById(R.id.btn_answer2));
-        buttonList.add((Button)findViewById(R.id.btn_answer3));
+        buttonList.add((Button) findViewById(R.id.btn_answer1));
+        buttonList.add((Button) findViewById(R.id.btn_answer2));
+        buttonList.add((Button) findViewById(R.id.btn_answer3));
     }
     private void InitValues()
     {
@@ -66,6 +67,7 @@ public class QuestionActivity extends AppCompatActivity {
     }
 
 
+
     //Go to next screen after XXX seconds
     private void CreateOnClickHandler(final boolean _didClickCorrect)
     {
@@ -73,13 +75,11 @@ public class QuestionActivity extends AppCompatActivity {
         hand_waitAfterAnswer.postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (_didClickCorrect)
-                {
+                if (_didClickCorrect) {
                     Global.Progress();
                     Global.correctAnswers++;
                     //if category is done, and new category is assigned(after Progress() it will be 0)
-                    if (Global.progress == 0)
-                    {
+                    if (Global.progress == 0) {
                         //if max category is reached
                         if (Global.category != QuestionInfo.E_CATEGORY.MAX)
                             startActivity(new Intent(QuestionActivity.this, LevelAdvancement.class));
@@ -87,23 +87,27 @@ public class QuestionActivity extends AppCompatActivity {
                             startActivity(new Intent(QuestionActivity.this, FinishGameActivity.class));
                     }
                     //if we're just progressing in current category
-                    else
-                    {
-                        RefreshQuestion();
+                    else {
+                        if (Global.IsConnectedToInternet(getApplicationContext()))
+                            InitNewQuestion();
+                        else
+                            OnDisconect();
+
                     }
-                }
-                else
-                {
+                } else {
                     Global.ResetProgress();
                     Global.incorrectAnswers++;
-                    startActivity(new Intent(QuestionActivity.this, LevelAdvancement.class));
+                    if (Global.IsConnectedToInternet(getApplicationContext()))
+                        startActivity(new Intent(QuestionActivity.this, LevelAdvancement.class));
+                    else
+                        OnDisconect();
                 }
             }
         }, 2000);
     }
 
 
-    private void RefreshQuestion()
+    private void InitNewQuestion()
     {
         //Refresh info for GUI
         info = QuestionReader.GetRandQuestionInfo(Global.category);
@@ -111,7 +115,7 @@ public class QuestionActivity extends AppCompatActivity {
         //Refresh button attributes
         for (Button curBtn : buttonList )
         {
-            curBtn.setBackgroundColor(Color.WHITE);
+            curBtn.setBackgroundColor(0xFF5cdeff);
             curBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -132,12 +136,12 @@ public class QuestionActivity extends AppCompatActivity {
         for (Button curBtn : buttonList )
         {
             //if this button is right
-            if(curBtn.getText() == info.correctAnswer)
+            if(info.correctAnswer.equals(curBtn.getText()))
             {
                 curBtn.setBackgroundColor(Color.GREEN);
             }
             //if clicked button is this button and it's not right answer
-            if(clickedBtn == curBtn && clickedBtn.getText() != info.correctAnswer)
+            if(clickedBtn.equals(curBtn) && !info.correctAnswer.equals(clickedBtn.getText()))
             {
                 clickedBtn.setBackgroundColor(Color.RED);
             }
@@ -146,11 +150,15 @@ public class QuestionActivity extends AppCompatActivity {
             curBtn.setOnClickListener(null);
         }
         //Create Handle
-        boolean didClickCorrect = (clickedBtn.getText() == info.correctAnswer) ? true : false ;
-        Global.Write(getApplicationContext(),String.valueOf(didClickCorrect));
+        boolean didClickCorrect = (info.correctAnswer.equals(clickedBtn.getText())) ? true : false;
         CreateOnClickHandler(didClickCorrect);
     }
 
+    public void OnDisconect()
+    {
+        startActivity(new Intent(this, MainMenu.class));
+        Global.Write(getApplicationContext(), "YOU MUST BE CONNECTED TO INTERNET");
+    }
 
 
 

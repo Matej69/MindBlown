@@ -29,10 +29,9 @@ public class QuestionReader{
         Random rand = new Random();
         randQID = rand.nextInt(Global.maxDatabaseQuestion);
 
-
         //Get random question info
         Firebase question = new Firebase("https://mindblown-cb605.firebaseio.com/"+_cat.toString()+"/Q"+randQID);
-        question.addListenerForSingleValueEvent(new ValueEventListener() {
+        question.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 //Get map of all question in category Q1,Q2,Q3,...
@@ -45,14 +44,22 @@ public class QuestionReader{
             }
         });
 
+
         return questionInfo;
     }
 
 
+
+
     //Trigger some event listeners for first time(Some weird stuff)
-    public static void InitDatabaseValueListeners()
+    static private boolean isDatabaseListenerSetup = false;
+    public static void InitDatabaseValueListener()
     {
-        QuestionInfo info = GetRandQuestionInfo(QuestionInfo.E_CATEGORY.DINOSAURS);
+        if(!isDatabaseListenerSetup)
+        {
+            QuestionInfo info = GetRandQuestionInfo(QuestionInfo.E_CATEGORY.ANIMALS);
+            isDatabaseListenerSetup = true;
+        }
     }
 
 }

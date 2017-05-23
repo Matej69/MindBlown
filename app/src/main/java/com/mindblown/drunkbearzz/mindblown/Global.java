@@ -1,6 +1,8 @@
 package com.mindblown.drunkbearzz.mindblown;
 
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.widget.Toast;
 
 import com.firebase.client.Firebase;
@@ -21,8 +23,8 @@ public class Global {
 
 
     //Game state info
-    public static int maxDatabaseQuestion = 3;
-    public static int maxProgress = 3;
+    public static int maxDatabaseQuestion = 5;
+    public static int maxProgress = 5;
     public static int progress = 0;
     public static QuestionInfo.E_CATEGORY category = QuestionInfo.E_CATEGORY.ANIMALS;
     public static void Progress()
@@ -47,24 +49,19 @@ public class Global {
     }
 
 
+    //Connectivity
+    static public boolean IsConnectedToInternet(Context con)
+    {
+        ConnectivityManager connectManager = (ConnectivityManager)con.getSystemService(Context.CONNECTIVITY_SERVICE);
+        if(connectManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
+           connectManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED)
+            return true;
+        else
+            return false;
+    }
 
 
-    //Database info
-    /*
-    static private Firebase databaseRoot;       //root is always same so it can be stored once
-    static public Firebase GetDatabaseRoot()
-    {
-        if(databaseRoot == null)
-            databaseRoot = new Firebase("https://mindblown-cb605.firebaseio.com/");
-        return databaseRoot;
-    }
-    */
-/*
-    static public Firebase GetDatabaseCategory(QuestionInfo.E_CATEGORY _cat)
-    {
-        return databaseRoot = new Firebase("https://mindblown-cb605.firebaseio.com/"+String.valueOf(_cat));
-    }
-*/
+
 
 
 

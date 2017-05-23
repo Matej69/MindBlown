@@ -3,14 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.mindblown.drunkbearzz.mindblown.QuestionActivity">
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="ac"
         android:id="@+id/btn_answer3"
@@ -19,22 +15,24 @@
         android:textSize="20sp"
         android:textAlignment="viewStart"
         android:paddingLeft="30dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/txt_question"
-        android:layout_alignEnd="@+id/txt_question"
         android:onClick="OnAnswerClicked"
-        android:background="#ffffff" />
+        android:background="#5cdeff"
+        android:shadowColor="#000000"
+        android:textColor="#ffffff"
+        android:textStyle="bold"
+        android:layout_marginTop="42dp"
+        android:layout_below="@+id/bar_progress"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text Large Text Large Text Large Text"
+        android:text="Large ext Large Text LargeText LargeText"
         android:id="@+id/txt_question"
         android:layout_alignParentTop="true"
-        android:background="#abffee"
+        android:background="#ff5c5f"
         android:paddingTop="25dp"
         android:paddingBottom="25dp"
         android:layout_alignParentRight="true"
@@ -43,11 +41,13 @@
         android:layout_alignParentStart="true"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
-        android:textSize="25sp"
-        android:textIsSelectable="false" />
+        android:textSize="22sp"
+        android:textIsSelectable="false"
+        android:textColor="#fdf7ff"
+        android:textStyle="bold" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="New Button"
         android:id="@+id/btn_answer2"
@@ -56,15 +56,18 @@
         android:textSize="20sp"
         android:textAlignment="viewStart"
         android:paddingLeft="30dp"
-        android:layout_above="@+id/btn_answer3"
-        android:layout_alignRight="@+id/btn_answer3"
-        android:layout_alignEnd="@+id/btn_answer3"
+        android:onClick="OnAnswerClicked"
+        android:textColor="#ffffff"
+        android:textStyle="bold"
+        android:textColorHighlight="#d2f6ff"
+        android:background="#5cdeff"
+        android:layout_below="@+id/btn_answer1"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:onClick="OnAnswerClicked" />
+        android:layout_marginTop="5dp" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="New Button"
         android:id="@+id/btn_answer1"
@@ -73,12 +76,15 @@
         android:textSize="20sp"
         android:textAlignment="viewStart"
         android:paddingLeft="30dp"
-        android:layout_above="@+id/btn_answer2"
-        android:layout_alignRight="@+id/btn_answer2"
-        android:layout_alignEnd="@+id/btn_answer2"
+        android:onClick="OnAnswerClicked"
+        android:textColor="#ffffff"
+        android:textStyle="bold"
+        android:textColorHighlight="#d2f6ff"
+        android:background="#5cdeff"
+        android:layout_below="@+id/btn_answer3"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:onClick="OnAnswerClicked" />
+        android:layout_marginTop="5dp" />
 
     <ProgressBar
         style="?android:attr/progressBarStyleHorizontal"

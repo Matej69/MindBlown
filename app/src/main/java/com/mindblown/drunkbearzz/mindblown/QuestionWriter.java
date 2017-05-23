@@ -54,9 +54,11 @@ public class QuestionWriter {
     {
         InitCategoriesToDatabase();
 
-        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.DINOSAURS, new QuestionInfo("Tako2 32asto?", "Tako", "Nako", "Vako", "Nako"));
-        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.DINOSAURS, new QuestionInfo("111111", "Tako", "Nako", "Vako", "Nako"));
-        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.DINOSAURS, new QuestionInfo("WWWWWWWW", "Tako", "Nako", "Vako", "Nako"));
+        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.ANIMALS, new QuestionInfo("Tako2 32asto?", "Tako", "Nako", "Vako", "Nako"));
+        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.ANIMALS, new QuestionInfo("111111", "Tako", "Nako", "Vako", "Nako"));
+        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.ANIMALS, new QuestionInfo("WWWWWWWW WWWWWWWWWWWWWWWWWWWW WWWWWWWWWWWWWWWWWWWWWWW WWWWWWWWWWW WWWWWWWWWWW WWWWWWWWW WWWWWWWWW WWWWWWWWWWWW", "Tako", "Nako", "Vako", "Nako"));
+        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.ANIMALS, new QuestionInfo("Ko je jako los u programiranju, al onak, stavno los da to nije normalno", "Luka", "Ante", "Luka i Ante", "Luka i Ante"));
+        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.ANIMALS, new QuestionInfo("Gdje je matej?", "U klubu", "U maminon podrumu", "Kod cure", "U maminon podrumu"));
     }
 
 
