@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.os.Handler;
+import android.widget.Toast;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -75,11 +76,13 @@ public class QuestionActivity extends AppCompatActivity {
         hand_waitAfterAnswer.postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (_didClickCorrect) {
+                if (_didClickCorrect)
+                {
                     Global.Progress();
                     Global.correctAnswers++;
                     //if category is done, and new category is assigned(after Progress() it will be 0)
-                    if (Global.progress == 0) {
+                    if (Global.progress == 0)
+                    {
                         //if max category is reached
                         if (Global.category != QuestionInfo.E_CATEGORY.MAX)
                             startActivity(new Intent(QuestionActivity.this, LevelAdvancement.class));
@@ -87,14 +90,17 @@ public class QuestionActivity extends AppCompatActivity {
                             startActivity(new Intent(QuestionActivity.this, FinishGameActivity.class));
                     }
                     //if we're just progressing in current category
-                    else {
+                    else
+                    {
                         if (Global.IsConnectedToInternet(getApplicationContext()))
                             InitNewQuestion();
                         else
                             OnDisconect();
 
                     }
-                } else {
+                }
+                else
+                {
                     Global.ResetProgress();
                     Global.incorrectAnswers++;
                     if (Global.IsConnectedToInternet(getApplicationContext()))

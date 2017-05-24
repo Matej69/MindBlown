@@ -28,8 +28,7 @@ public class MainMenu extends AppCompatActivity {
         setContentView(R.layout.activity_main_menu);
         context = getApplicationContext();
 
-        //QuestionWriter.InitDatabase();
-
+        QuestionWriter.InitDatabase();
 
     }
 
@@ -40,28 +39,12 @@ public class MainMenu extends AppCompatActivity {
     {
         if(Global.IsConnectedToInternet(getApplicationContext()))
         {
-            QuestionReader.InitDatabaseValueListener();
-
-            //We wait for some time because InitDatabaseValueListener initialises itself in separate Thread,
-            // Android freezes application when Semaphores are used so we need to wait for some time
-            Global.Write(getApplicationContext(), "CONNECTING TO DATABASE...");
-            Handler hand = new Handler();
-            hand.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    Global.ResetAnswersCorrectness();
-                    Intent intent = new Intent(context, LevelAdvancement.class);
-                    startActivity(intent);
-                }
-            }, 1500);
+            Global.ResetAnswersCorrectness();
+            Intent intent = new Intent(context, LevelAdvancement.class);
+            startActivity(intent);
         }
         else
             Global.Write(getApplicationContext(), "YOU MUST BE CONNECTED TO INTERNET");
-    }
-
-    public void OnExitButton(View v)
-    {
-        finish();
     }
 
 

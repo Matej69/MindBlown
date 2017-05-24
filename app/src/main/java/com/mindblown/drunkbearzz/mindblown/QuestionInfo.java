@@ -16,11 +16,10 @@ public class QuestionInfo {
         MEMES,
         INTERNET,
         SPORT,
+        /*
+        TIME,//what was before
         SCIENCE,
-        PHYSICS,
-        BODY,
         BIOLOGY,
-        DINOSAURS,
         POKEMON,
         VIDEO_GAMES,
         MOVIES,
@@ -28,6 +27,8 @@ public class QuestionInfo {
         FOOD,
         DRINK,
         ANIME,
+        //what was before
+        */
         MAX
     }
 

@@ -23,8 +23,8 @@ public class Global {
 
 
     //Game state info
-    public static int maxDatabaseQuestion = 5;
-    public static int maxProgress = 5;
+    public static int maxDatabaseQuestion = 70;
+    public static int maxProgress = 20;
     public static int progress = 0;
     public static QuestionInfo.E_CATEGORY category = QuestionInfo.E_CATEGORY.ANIMALS;
     public static void Progress()

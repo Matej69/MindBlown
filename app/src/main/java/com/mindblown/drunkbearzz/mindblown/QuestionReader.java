@@ -44,22 +44,23 @@ public class QuestionReader{
             }
         });
 
-
         return questionInfo;
     }
 
 
 
 
+    /*
     //Trigger some event listeners for first time(Some weird stuff)
     static private boolean isDatabaseListenerSetup = false;
     public static void InitDatabaseValueListener()
     {
         if(!isDatabaseListenerSetup)
         {
-            QuestionInfo info = GetRandQuestionInfo(QuestionInfo.E_CATEGORY.ANIMALS);
+            //GetRandQuestionInfo(QuestionInfo.E_CATEGORY.INTERNET);
             isDatabaseListenerSetup = true;
         }
     }
+    */
 
 }

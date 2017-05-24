@@ -27,7 +27,11 @@ public class LevelAdvancement extends AppCompatActivity {
 
         SetRefrences();
         InitValues();
-        InitNextScreenHandler(1500);
+
+        //One question will be read into static variable and every time we want to call 'GetRandQuestionInfo' we are
+        //actually getting previous question info becouse that function returns info before completing Firebase 'onDataChange' function
+        QuestionReader.GetRandQuestionInfo(Global.category);
+        InitNextScreenHandler(2500);
 
 
     }
