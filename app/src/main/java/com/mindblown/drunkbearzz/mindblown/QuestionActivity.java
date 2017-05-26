@@ -12,6 +12,9 @@ import android.widget.TextView;
 import android.os.Handler;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -23,6 +26,7 @@ public class QuestionActivity extends AppCompatActivity {
 
     TextView txt_question;
     ProgressBar bar_progress;
+    AdView adView_banner;
     ArrayList<Button> buttonList;
 
     QuestionInfo info;
@@ -52,6 +56,7 @@ public class QuestionActivity extends AppCompatActivity {
         buttonList.add((Button) findViewById(R.id.btn_answer1));
         buttonList.add((Button) findViewById(R.id.btn_answer2));
         buttonList.add((Button) findViewById(R.id.btn_answer3));
+        adView_banner = (AdView)findViewById(R.id.adView_banner);
     }
     private void InitValues()
     {
@@ -109,7 +114,7 @@ public class QuestionActivity extends AppCompatActivity {
                         OnDisconect();
                 }
             }
-        }, 2000);
+        }, 1300);
     }
 
 
@@ -129,6 +134,8 @@ public class QuestionActivity extends AppCompatActivity {
                 }
             });
         }
+        //Try to run banner ad
+        AdManager.TrySpawnAd(this, adView_banner);
     }
 
 

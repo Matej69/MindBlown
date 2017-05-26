@@ -3,9 +3,15 @@ package com.mindblown.drunkbearzz.mindblown;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.view.View;
 import android.widget.Toast;
 
 import com.firebase.client.Firebase;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by Matej on 19/05/2017.
@@ -59,10 +65,6 @@ public class Global {
         else
             return false;
     }
-
-
-
-
 
 
 

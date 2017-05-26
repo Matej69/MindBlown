@@ -1,6 +1,7 @@
 package com.mindblown.drunkbearzz.mindblown;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
@@ -12,17 +13,27 @@ import java.util.Map;
 /**
  * Created by Matej on 21/05/2017.
  */
-public class QuestionWriter {
 
+
+/**************USED ONLY WHEN WRITING WHOLE DATABASE AND PUTTING IT ONLINE
+ * THERE IS NO NEED TO COMPILE THIS CLASS WITH .APK IF THERE ALREADY IS INITIALISED DATABASE
+ *IN 'DatabaseInit' CLASS WE WILL BE WRITING/INITIALISING DATABASE IF NEEDED BUT THAT WILL NOT BE IN FINAL .APK
+ * P.S. WRITTING TO DATABASE SHOULD BE REMOVED AN PUT IN SEPARATE APPLICATION BUT WHO HAS TIME FOR THAT, RIGHT :)
+*/
+
+public class QuestionWriter {
+/*
     //Write child
-    static private void CreateChild(Firebase _parent, String _nameID, String _val) {
+    static private void CreateChild(Firebase _parent, String _nameID, String _val)
+    {
         Firebase child = _parent.child(_nameID);
         child.setValue(_val);
     }
 
 
     static private int numOfQ = 0;
-    static public void AddQuestionToDatabase(QuestionInfo.E_CATEGORY _cat, QuestionInfo _questionInfo) {
+    static public void AddQuestionToDatabase(QuestionInfo.E_CATEGORY _cat, QuestionInfo _questionInfo)
+    {
         Firebase category = new Firebase("https://mindblown-cb605.firebaseio.com/" + _cat.toString());
 
         //Add new Question with name Q+numOfQ
@@ -40,7 +51,8 @@ public class QuestionWriter {
     //**************************************** DATABASE CREATION ********************************************
     //*********************************** WILL NOT BE IN FINAL BUILD ***************************************
     //Init all categories
-    static private void InitCategoriesToDatabase() {
+    static private void InitCategoriesToDatabase()
+    {
         Firebase databaseRoot = new Firebase("https://mindblown-cb605.firebaseio.com/");
         for (QuestionInfo.E_CATEGORY category : QuestionInfo.E_CATEGORY.values())
             CreateChild(databaseRoot, category.toString(), "0");
@@ -55,8 +67,8 @@ public class QuestionWriter {
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.ANIMALS, new QuestionInfo("Great white sharks can detect a drop of blood from...", "3 miles away", "1 mile", "3.7 kilometers away", "3 miles away"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.ANIMALS, new QuestionInfo("The blue whale's tongue weighs as much as an...", "Adult elephant", "Adult bear", "3 adult bisons", "Adult elephant"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.ANIMALS, new QuestionInfo("Houseflies hum in the shape of letter...", "F", "O", "L", "F"));
-        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.ANIMALS, new QuestionInfo("Fleas can jump distances longer then how many times fo their body length", "70", "100", "150", "70"));
-        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.ANIMALS, new QuestionInfo("What is the loudest land animal", "Silver tusk elephant", "Howler monkey", "Gray wolf", "Howler monkey"));
+        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.ANIMALS, new QuestionInfo("Fleas can jump distances longer then how many times fo their body length?", "70", "100", "150", "70"));
+        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.ANIMALS, new QuestionInfo("What is the loudest land animal?", "Silver tusk elephant", "Howler monkey", "Gray wolf", "Howler monkey"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.ANIMALS, new QuestionInfo("With good hearing you could hear blue whales from...", "5 miles away", " 250 miles away", "500 miles away", "500 miles away"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.ANIMALS, new QuestionInfo("A cheetah can go from zero to 60 miles in...", "3 seconds", "4 seconds", "5 seconds", "3 seconds"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.ANIMALS, new QuestionInfo("Male emperor penguins will stand without eating for up to...", "30 days", "45 days", "60 days", "60 days"));
@@ -64,7 +76,7 @@ public class QuestionWriter {
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.ANIMALS, new QuestionInfo("Which bird uses most energy while taking off before flying?", "Albatros", "Parrot", "Seagul", "Albatros"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.ANIMALS, new QuestionInfo("Polar bears have what color of skin under their white fur?", "White", "Black", "Gray", "Black"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.ANIMALS, new QuestionInfo("The name jaguar means what?", "One leap killer", "Thunder speed", "Speed of light", "One leap killer"));
-        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.ANIMALS, new QuestionInfo("Hippos secrete a red oily substance from their skin to?", "Repel predators", "Moisturize skin", "Reveal stress", "Moisturize skin"));
+        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.ANIMALS, new QuestionInfo("Hippos secrete a red oily substance from their skin to...", "Repel predators", "Moisturize skin", "Reveal stress", "Moisturize skin"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.ANIMALS, new QuestionInfo("The 2-inch-long golden poison dart frog has enough venom to kill how many adult men?", "10", "25", "70", "10"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.ANIMALS, new QuestionInfo("Galapagos tortoises sleep for how many hours a day?", "10", "23", "16", "16"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.ANIMALS, new QuestionInfo("Galapagos tortoises can go without food for how many days?", "160", "260", "360", "360"));
@@ -79,8 +91,8 @@ public class QuestionWriter {
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.ANIMALS, new QuestionInfo("Can the kick of an ostrich can kill any lion and man?", "Yes", "No", "WTF man??!?", "Yes"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.ANIMALS, new QuestionInfo("Flying fish can glide for the length of a how many football fields?", "1", "2", "3", "2"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.ANIMALS, new QuestionInfo("When tarantulas molt, they can replace their...", "Skin", "Bones", "Iternal organs", "Iternal organs"));
-        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.ANIMALS, new QuestionInfo(" Elephants can smell water from how many miles away miles away?", "Several", "20", "50", "Several"));
-        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.ANIMALS, new QuestionInfo("Largest fish in the sea is?", "White whale", "Whale shark", "Gray Whale", "Whale shark"));
+        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.ANIMALS, new QuestionInfo(" Elephants can smell water from how many miles away?", "Several", "20", "50", "Several"));
+        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.ANIMALS, new QuestionInfo("The largest fish in the sea is?", "White whale", "Whale shark", "Gray Whale", "Whale shark"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.ANIMALS, new QuestionInfo("Acient goblin shar is actually...", "Ugly as hell", "Colorful", "Pretty cool", "Ugly as hell"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.ANIMALS, new QuestionInfo("The king cobra has enough venom to kill how many elephants?", "1", "2", "3", "1"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.ANIMALS, new QuestionInfo("The narwhal has how many teeth?", "1", "2", "3", "2"));
@@ -114,7 +126,7 @@ public class QuestionWriter {
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.ANIMALS, new QuestionInfo("A group of owls is called what?", "A parliament", "Owl meeting", "Circle of thoughts", "A parliament"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.ANIMALS, new QuestionInfo("Apple and pear seeds can kill what animal?", "Bird", "Dog", "Fox", "Dog"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.ANIMALS, new QuestionInfo("Cats have lived with people for how many years?", "1 thousand", "4 thousand", "7 thousand", "7 thousand"));
-        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.ANIMALS, new QuestionInfo("A cat has 32 muscles in each", "Ear", "Paw", "Leg", "Ear"));
+        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.ANIMALS, new QuestionInfo("A cat has 32 muscles in each...", "Ear", "Paw", "Leg", "Ear"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.ANIMALS, new QuestionInfo("Hippos can run faster than...", "Humans", "Leopards", "Flamingos", "Humans"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.ANIMALS, new QuestionInfo("A woodpecker can peck how many times per second?", "10", "20", "30", "20"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.ANIMALS, new QuestionInfo("A moth has no...", "Head", "Stomach", "Sight", "Stomach"));
@@ -130,7 +142,7 @@ public class QuestionWriter {
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("Which animal is known for crashing many pictures since 2009", "Dog", "Fox", "Squirrel", "Squirrel"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("What nationality is the Standing Cat named Rocky?", "Croatian", "Spanish", "French", "French"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("'They're eating her!' is a line from which movie?", "Troll 2", "Zombies now 2", "Mummy 2", "Troll 2"));
-        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("Which tpye of cat is watching you, always?", "Underbed", "Ceiling", "Floot", "Ceiling"));
+        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("Which type of cat is watching you, always?", "Underbed", "Ceiling", "Floot", "Ceiling"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("What is the frog riding?", "A unicycle", "A unicorn", "A motorbike", "A unicycle"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("You're supposed to put what substance on your nipples in order to get high?", "Toothpaste", "Bacon sirup", "Maple sirup", "Toothpaste"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("Where can you get free candy?", "In a van", "In a basement", "In a kitchen", "In a van"));
@@ -140,55 +152,55 @@ public class QuestionWriter {
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("A viral Kickstarter campaign resulted in a meme about recipes for what dish?", "Red bread", "Potato salad", "Shark eye", "Potato salad"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("Which font is ridiculed endlessly?", "Arial", "Comic sans", "Arial light", "Comic sans"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("Gandhi is always obsessed with what?", "Nuclear bombs", "Female sheeps", "Giant ships", "Nuclear bombs"));
-        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("Which world leader hanging out with a rainbow?", "Stalin", "Trump", "Obama", "Stalin"));
+        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("Which world leader is hanging out with a rainbow?", "Stalin", "Trump", "Obama", "Stalin"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("What is Polybius?", "An arcade game", "Experimental drug", "Type of cat", "An arcade game"));
-        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo(" In what year did the word cringeworthy really come to light?", "1876", "1972", "2013", "1972"));
+        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("In what year did the word cringeworthy really come to light?", "1876", "1972", "2013", "1972"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("What sort of animal is drinking out of cups?", "Lizard", "Bird", "Monkey", "Lizard"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("Where is the cat on the keyboard?", "In space", "On moon", "On cloud", "In space"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("The Miami Zombie was supposedly under the influence of what substance?", "Bath salts", "Dead bats", "Vampire bool", "Bath salts"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("Running girl has jacket of what color?", "Blue", "Red", "Yellow", "Yellow"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("Older guy in 'I don't always' meme has what else on the table? ", "Wine", "Beer", "Cocktail", "Beer"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("Guy in 'One does not simply' meme made what shape with his hand?'", "Triangle", "Circle", "Ellipse", "Circle"));
-        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("Girl which hold books hold hown many of them?", "2", "3", "4", "3"));
-        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("'What if I told you' has what person in it?", "Morpheus", "Pepe", "Lizzard", "Morpheus"));
+        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("Girl which holds books hold hown many of them?", "2", "3", "4", "3"));
+        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("'What if I told you' has what movie character in it?", "Morpheus", "Pepe", "Lizzard", "Morpheus"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("In Patrick Stewart(Star Trek) meme what color is his shirt?", "Purple and Black", "Yellow and Black", "Orange and Black", "Purple and Black"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("Never satisfied parent is of what race?", "Asian", "African", "Indian", "Asian"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("High guy meme is using...", "Misspell words", "World domination", "Sell weed", "Misspell words"));
-        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("Angry is doing what?", "Hating everything", "Preparing for domination", "Hating People", "Hating everything"));
-        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("In meme where Jesus is pointing with his hand he is also winking with his...", "left eye", "right eye", "both eyes", "right eye"));
+        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("Angry cat is doing what?", "Hating everything", "Preparing for domination", "Hating People", "Hating everything"));
+        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("In meme where Jesus is pointing with his hand he is also winking with his...", "Left eye", "Right eye", "Both eyes", "Right eye"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("Pepe is what?", "Happy", "Sad", "Angry", "Sad"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("Pepe is what animal?", "Frog", "Bunny", "Deer", "Frog"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("Pepe is doing what?", "Jumping", "Crying", "Dancing", "Crying"));
-        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("In meme where the guy sitting at desk with veins on his head, who is next to him?", "Guy", "Girl", "Child", "Girl"));
+        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("In meme where the guy is sitting at desk with veins on his forehead, who is next to him?", "Guy", "Girl", "Child", "Girl"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("'Tell me more' meme features which actor", "Gene Wilder", "Harrison Ford", "Jack Nicholson", "Gene Wilder"));
-        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("LOL stands for", "Laugh out loud", "Lots of love", "Love ", ""));
+        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("LOL stands for", "Laugh out loud", "Lots of love", "Love outer space", "Laugh out loud"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("What is meme name for Sonic", "Senic", "Sanic", "Sunic", "Sanic"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("Which frog was in love with a pig?", "Pepe", "Kermit", "pepito", "Kermit"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("Which boi is never gonna give you up?", "Rick Roll", "Rick Rock", "Jim Roll", "Rick Roll"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("Most popular dog meme?", "Dogu", "Doge", "Dogy", "Doge"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("YOLO means what?", "You only live once", "You only love ovens", "You only love Oliver", "You only live once"));
-        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("Rainbow cat is also known as...", "Nyan cat", "Neon Cat", "Nyah Cat", ""));
+        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("Rainbow cat is also known as...", "Nyan cat", "Neon Cat", "Nyah Cat", "Nyan cat"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("On meme with orange cat, what does the cat play?", "Mini piano", "Flute", "Guitar", "Mini piano"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("What is written on most famous troll face meme?", "Problem?", "Problem!", "Problem.", "Problem?"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("What facial expression does most famous troll face has?", "Smile", "Anger", "Concentration", "Smile"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("What is the color of trollzilla?", "White", "Green", "Blue", "Green"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("How many fingers does 'Like a boss' meme guy has on each hand?", "3", "4", "5", "4"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("What prefix is often added to memes", "El", "Le", "Dis", "El"));
-        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("'Keep calm and' meme originates was originaly what?", "Rock band poster", "Motivational poster", "Boxing slogan", "Motivational poster"));
-        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("What actor was in 'You don't say' meme ", "Nicolas Cage", "Steven Seagal", "Brad pitt", "Nicolas Cage"));
+        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("'Keep calm and' meme was originally what?", "Rock band poster", "Motivational poster", "Boxing slogan", "Motivational poster"));
+        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("What actor is in 'You don't say' meme?", "Nicolas Cage", "Steven Seagal", "Brad pitt", "Nicolas Cage"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("'Bitch Please' meme is actually who?", "Yao Ming", "Yao Mingus Develona", "Yayin Minge", "Yao Ming"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("'Bitch Please' face was made during what?", "Press conference", "Voting", "Football game", "Press conference"));
-        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("'Impossibru!' face is from Japanesse show?", "Prank King", "Prank Queen", "Prank Deer", "Prank King"));
-        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("Who mentioned term 'Meme' for the first time?", "Richard Dawkins", "Sir Isaac Newton", "Isaac Newton", ""));
-        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("How much money did Carlos Ramirez eanr for licensing a troll face?", "100 thousand", "1 million", "12 million", "100 thousand"));
-        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("Popular song has badgers, snake and what else", "Flower", "Mushroom", "Elephants", "Mushroom"));
-        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("Who is the biggest scumbag of all meme world?", "Steve", "Bruno", "Bill", "Steve"));
+        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("'Impossibru!' face is from what Japanesse show?", "Prank King", "Prank Queen", "Prank Deer", "Prank King"));
+        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("Who mentioned term 'Meme' for the first time?", "Richard Dawkins", "Sir Isaac Newton", "Isaac Newton", "Richard Dawkins"));
+        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("How much money did Carlos Ramirez earn for licensing a troll face?", "100 thousand", "1 million", "12 million", "100 thousand"));
+        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("Popular song has badgers, snakes and what else", "Flower", "Mushrooms", "Elephants", "Mushrooms"));
+        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("Who is the biggest scumbag of all in the world of memes?", "Steve", "Bruno", "Bill", "Steve"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("Doge is actually what?", "Shiba Inu", "African monkey", "Gnu", "Shiba Inu"));
-        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("What is popular meme website", "4Chan", "Facebook", "Twitter", "4Chan"));
-        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("What is popular meme website", "Reddit", "Instagram", "Youtube", "Reddit"));
-        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("Scumbag Steve wears what?", "Hat", "Leopard jacket", "Elephant Socks", ""));
-        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("Creazy girl with eyes widespread eyes is doing what?", "Creeping on a guy", "Loving lizzards", "Slapping Elephants", "Creeping on a guy"));
-        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("What word is used in meme world", "Dank", "Sank", "Sunk", "Dank"));
+        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("What is popular meme website?", "4Chan", "Facebook", "Twitter", "4Chan"));
+        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("What is popular meme website?", "Reddit", "Instagram", "Youtube", "Reddit"));
+        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("Scumbag Steve wears what?", "Hat", "Leopard jacket", "Elephant Socks", "Hat"));
+        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("Creazy girl with eyes widespread is doing what?", "Creeping on a guy", "Loving lizzards", "Slapping Elephants", "Creeping on a guy"));
+        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("What word is used in the meme world?", "Dank", "Sank", "Sunk", "Dank"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("'You Don't Say' refers to what?", "Obvious observation", "Weird women", "Sky lizzards", "Obvious observation"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("Doge is sometimes watching you from...", "Sun", "Moon", "Mothers basement", "Sun"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.MEMES, new QuestionInfo("Kermit is drinking what?", "Milk", "Fuel", "Pure orange juice", "Milk"));
@@ -204,7 +216,7 @@ public class QuestionWriter {
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.INTERNET, new QuestionInfo("HTML is what?", "Markup language", "Programming language", "English language", "Markup language"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.INTERNET, new QuestionInfo("HTML is used with what?", "Windows", "Apple", "Internet pages", "Internet pages"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.INTERNET, new QuestionInfo("CSS means what?", "Cascading Style Sheets", "Casual Style Sheets", "Circular Style Sheets", "Cascading Style Sheets"));
-        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.INTERNET, new QuestionInfo("CSS is meant to be used to do what with web pages?", "Stylized it", "Make it work", "Show data", "Stylized it"));
+        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.INTERNET, new QuestionInfo("CSS is meant to be used to do what with web pages?", "Stylize it", "Make it work", "Show data", "Stylize it"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.INTERNET, new QuestionInfo("How many users does Facebook have?", "1.71 billion", "11 million", "400 million", "1.71 billion"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.INTERNET, new QuestionInfo("How many users does Instagram have?", "1.71 billion", "11 million", "400 million", "400 million"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.INTERNET, new QuestionInfo("How many users does 4Chan have?", "1.71 billion", "11 million", "400 million", "11 million"));
@@ -216,17 +228,17 @@ public class QuestionWriter {
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.INTERNET, new QuestionInfo("How many users does LinkedIn have?", "450 million", "50.6 million", "200 million", "450 million"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.INTERNET, new QuestionInfo("How many users does WhatsApp have?", "100 million", "20 million", "900 million", "900 million"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.INTERNET, new QuestionInfo("Google processes how many searches a month?", "800 million", "50 billion", "100 billion", "100 billion"));
-        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.INTERNET, new QuestionInfo("How many pages has google indexed by 2014?", "700 billion", "200 billion", "30 trillion", ""));
+        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.INTERNET, new QuestionInfo("How many pages has google indexed by 2014?", "700 billion", "200 billion", "30 trillion", "30 trillion"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.INTERNET, new QuestionInfo("What color represents Youtube?", "Red", "Green", "Blue", "Red"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.INTERNET, new QuestionInfo("What color represents Facebook?", "Red", "Green", "Blue", "Blue"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.INTERNET, new QuestionInfo("What company owns Youtube?", "Google", "Apple", "Microsoft", "Google"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.INTERNET, new QuestionInfo("What color is not on googles logo?", "Green", "Yellow", "Orange", "Orange"));
-        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.INTERNET, new QuestionInfo("What logo usses golden ratio", "Apple", "Google", "Windows", "Apple"));
+        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.INTERNET, new QuestionInfo("What logo usses golden ratio?", "Apple", "Google", "Windows", "Apple"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.INTERNET, new QuestionInfo("What percent of internet users use instagram?", "10%", "15%", "30%", "30%"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.INTERNET, new QuestionInfo("Internet started as what?", "ARPANET", "Internet 1.0", "WWW", "ARPANET"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.INTERNET, new QuestionInfo("WWW means?", "World Wide Web", "Wide World Web", "Wide Web World", "World Wide Web"));
-        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.INTERNET, new QuestionInfo("URL is another name for?", "Unified rules", "Web adress", "Home adress", ""));
-        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.INTERNET, new QuestionInfo("HTTPS is what when its compared to HTTP", "Less secure", "More secure", "Faster", "More secure"));
+        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.INTERNET, new QuestionInfo("URL is another name for?", "Unified rules", "Web adress", "Home adress", "Web adress"));
+        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.INTERNET, new QuestionInfo("HTTPS is what when its compared to HTTP?", "Less secure", "More secure", "Faster", "More secure"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.INTERNET, new QuestionInfo("Free online encyclopedia is also known as what?", "Wikipedia", "Onlinepedia", "WikiLeaks", "Wikipedia"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.INTERNET, new QuestionInfo("More secure informations can be shared on what platform?", "Wikipedia", "WikiLeaks", "Facebook", "WikiLeaks"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.INTERNET, new QuestionInfo("How many computers a single google search usess to give you an information?", "1000", "500", "100", "1000"));
@@ -238,7 +250,7 @@ public class QuestionWriter {
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.INTERNET, new QuestionInfo("First item sold on eBay was...", "Laser pointer", "Dirty bowl", "Cat remains", "Laser Pointer"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.INTERNET, new QuestionInfo("When was the first item on eBay sold?", "1991", "1995", "1998", "1995"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.INTERNET, new QuestionInfo("First real Facebook user is now what?", "A plumer", "Facebook employ", "A rabbi", "A rabbi"));
-        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.INTERNET, new QuestionInfo("What was the destination of the first video on Youtube?", "At the zoo", "at girlfriends house", "At the festival", "At zoo"));
+        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.INTERNET, new QuestionInfo("What was the destination of the first video on Youtube?", "At the zoo", "at girlfriends house", "At the festival", "At the zoo"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.INTERNET, new QuestionInfo("When was the first email sent?", "1971", "1980", "1984", "1971"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.INTERNET, new QuestionInfo("What was written in the first ever email?", "Nobody knows", "I love you Mike", "I love milk", "Nobody knows"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.INTERNET, new QuestionInfo("When did the first version of Facebook come up?", "2003", "2004", "2005", "2004"));
@@ -250,8 +262,8 @@ public class QuestionWriter {
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.INTERNET, new QuestionInfo("When did the first version of Wikipedia come up?", "1999", "2000", "2001", "2001"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.INTERNET, new QuestionInfo("Match.com made how many babies?", "500 thousand", "1 million", "1.5 million", "1 million"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.INTERNET, new QuestionInfo("What is the color of arrow on Amazon logo?", "yellow", "blue", "green", "yellow"));
-        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.INTERNET, new QuestionInfo("What 2 letter does arrow on Amazon logo connects", "A and Z", "A and O", "A and N", "A and Z"));
-        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.INTERNET, new QuestionInfo("What did people traded over internet in 70's and 80's", "ASCII images", "ASCII porn", "ASCII emoticons", "ASCII porn"));
+        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.INTERNET, new QuestionInfo("What 2 letter does arrow on Amazon logo connects?", "A and Z", "A and O", "A and N", "A and Z"));
+        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.INTERNET, new QuestionInfo("What did people traded over internet in 70's and 80's?", "ASCII images", "ASCII porn", "ASCII emoticons", "ASCII porn"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.INTERNET, new QuestionInfo("There is subreddit devoted to chicken nuggets that look like...", "Animals", "Other things", "Presidents", "Other things"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.INTERNET, new QuestionInfo("What country has treatment camps for internet addicts?", "Japan", "China", "Australia", "China"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.INTERNET, new QuestionInfo("How many wesites are hacked every day?", "10000", "50000", "100000", "50000"));
@@ -344,20 +356,21 @@ public class QuestionWriter {
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.SPORT, new QuestionInfo("Wanderlei Silvas nickname is...", "Rampage", "The Axe Murderer", "Destructor", "The Axe Murderer"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.SPORT, new QuestionInfo("Ian McCall's nickname is...", "Rampage", "Uncle Creepy", "The Last Emperor", "Uncle Creepy"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.SPORT, new QuestionInfo("Fedor Emelianenko's nickname is...", "Rampage", "Uncle Creepy", "The Last Emperor", "The Last Emperor"));
-        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.SPORT, new QuestionInfo("Mauricio Ruas nickname is...", "Rampage", "The prodigy", "Shogun", "Shogun"));
+        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.SPORT, new QuestionInfo("Mauricio Ruas nickname is...", "Rampage", "The Prodigy", "Shogun", "Shogun"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.SPORT, new QuestionInfo("BJ Pen's nickname is...", "Shogun", "The Prodigy", "Destructor", "The Prodigy"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.SPORT, new QuestionInfo("Mirko Filipovic's nickname is...", "Rampage", "Cro Cop", "Shogun", "Cro Cop"));
-        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.SPORT, new QuestionInfo("Randy Couture's nickname is...", "Rampage", "The natural", "Shogun", "The Natural"));
+        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.SPORT, new QuestionInfo("Randy Couture's nickname is...", "Rampage", "The Natural", "Shogun", "The Natural"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.SPORT, new QuestionInfo("Bas Rutten's nickname is...", "Rampage", "El Guapo", "Shogun", "El Guapo"));
-        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.SPORT, new QuestionInfo("Anderson Silvas's nickname is...", "The spider", "Cleaner", "Shogun", "The Spider"));
+        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.SPORT, new QuestionInfo("Anderson Silvas's nickname is...", "The Spider", "Cleaner", "Shogun", "The Spider"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.SPORT, new QuestionInfo("Jon Jones's nickname is...", "Bones", "Cleaner", "Shogun", "Bones"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.SPORT, new QuestionInfo("Jason Miller's nickname is...", "Mayhem", "Semtex", "Shogun", "Mayhem"));
         QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.SPORT, new QuestionInfo("Paul Daley's nickname is...", "Rampage", "Cleaner", "Semtex", "Semtex"));
-        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.SPORT, new QuestionInfo("Chris Leben's nickname is...", "The crippler", "Mayhem", "Shogun", "The Crippler"));
-
+        QuestionWriter.AddQuestionToDatabase(QuestionInfo.E_CATEGORY.SPORT, new QuestionInfo("Chris Leben's nickname is...", "The Crippler", "Mayhem", "Shogun", "The Crippler"));
     }
 
 
+
+*/
 }
 
 

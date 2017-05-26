@@ -11,5 +11,9 @@ public class DatabaseInit extends android.app.Application {
     {
         super.onCreate();
         Firebase.setAndroidContext(this);
+        //Initialise database with values
+        //QuestionWriter.InitDatabase();
+        //Initialise timer for ads
+        AdManager.InitCanSpawnAdTimer();
     }
 }

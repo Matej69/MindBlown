@@ -5,6 +5,17 @@
     android:layout_height="match_parent"
     tools:context="com.mindblown.drunkbearzz.mindblown.QuestionActivity">
 
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/imageView"
+        android:background="@drawable/backgroundimage"
+        android:contentDescription=""
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true" />
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -96,5 +107,20 @@
         android:max="50"
         android:progress="20"
         android:indeterminate="false" />
+
+
+    <com.google.android.gms.ads.AdView
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView_banner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="ca-app-pub-7164562029269979/8721931248"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+    </com.google.android.gms.ads.AdView>
 
 </RelativeLayout>
